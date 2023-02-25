@@ -22,9 +22,26 @@ namespace AxelRodriguez
 
         }
 
-        private void btnCalcular_Click(object sender, EventArgs e)
+        private async void btnCalcular_Click(object sender, EventArgs e)
         {
+            decimal precio = Convert.ToDecimal(preciotextBox.Text);
+            int cantidad = Convert.ToInt16(cantidadtextBox.Text);
+            decimal subtotal = Convert.ToDecimal(subtotaltextBox.Text);
+            subtotal = precio * cantidad;
+            decimal descuento = await descuentoAsync(subtotal);
+            decimal total = Convert.ToDecimal(totaltextBox.Text);
+            
+        }
 
+        private async Task<decimal> descuentoAsync(decimal subtotal)
+        {
+            decimal desc = await Task.Run(() =>
+                {
+                    
+                    desc = subtotal*desc;
+                    return desc;
+
+                });
         }
     }
 }
